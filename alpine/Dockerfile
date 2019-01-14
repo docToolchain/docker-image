@@ -24,6 +24,7 @@ RUN     git clone https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
         git submodule update -i && \
         ./gradlew tasks
+        PATH="/docToolchain/bin:${PATH}"
 
 ENV PATH="/docToolchain/bin:${PATH}"
 
@@ -33,4 +34,5 @@ WORKDIR $DT_HOME/docToolchain
 
 VOLUME /home/project
 
+CMD bash
 ENTRYPOINT bash
