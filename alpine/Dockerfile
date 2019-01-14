@@ -7,7 +7,6 @@ RUN	echo "add needed tools" && \
     git graphviz
 
 SHELL ["/bin/bash", "-c"]
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "Install sdkman" &&\
     curl -s "https://get.sdkman.io" | bash
