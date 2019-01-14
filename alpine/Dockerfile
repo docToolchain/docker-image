@@ -4,7 +4,11 @@ ENV SDKMAN_DIR=/root/.sdkman
 
 RUN	echo "add needed tools" && \
     apk add --no-cache curl wget zip unzip git bash \
-    git graphviz
+    git \
+    graphviz \
+    python \
+    ruby && \
+    gem install rdoc pygments.rb
 
 SHELL ["/bin/bash", "-c"]
 
@@ -23,7 +27,8 @@ RUN	echo "Install java, groovy" && \
 RUN     git clone https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
         git submodule update -i && \
-        ./gradlew tasks
+        ./gradlew tasks && \
+        ./gradlew && \
         PATH="/docToolchain/bin:${PATH}"
 
 ENV PATH="/docToolchain/bin:${PATH}"
