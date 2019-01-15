@@ -14,7 +14,7 @@ RUN	echo "add needed tools" && \
     py-pygments \
     ttf-dejavu && \
     gem install rdoc --no-document && \
-    gem install pygemnts.rb
+    gem install pygments.rb
 
 SHELL ["/bin/bash", "-c"]
 
