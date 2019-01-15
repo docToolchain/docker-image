@@ -39,11 +39,11 @@ RUN     git clone https://github.com/docToolchain/docToolchain.git && \
 
 ENV PATH="/docToolchain/bin:${PATH}"
 
-RUN mkdir /home/project
+RUN mkdir /project
 
-WORKDIR $DT_HOME/docToolchain
+WORKDIR /project
 
-VOLUME /home/project
+VOLUME /project
 
 CMD bash
 ENTRYPOINT bash
