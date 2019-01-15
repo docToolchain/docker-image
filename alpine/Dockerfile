@@ -7,7 +7,7 @@ RUN	echo "add needed tools" && \
     git \
     graphviz \
     python \
-    ruby
+    ruby \
     py-pygments
 
 SHELL ["/bin/bash", "-c"]
