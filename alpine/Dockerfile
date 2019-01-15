@@ -7,9 +7,8 @@ RUN	echo "add needed tools" && \
     git \
     graphviz \
     python \
-    ruby && \
-    gem install rdoc --no-document && \
-    gem install pygments.rb
+    ruby
+    py-pygments
 
 SHELL ["/bin/bash", "-c"]
 
