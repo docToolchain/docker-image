@@ -45,4 +45,4 @@ WORKDIR /project
 
 VOLUME /project
 
-ENTRYPOINT bash
+ENTRYPOINT /bin/bash
