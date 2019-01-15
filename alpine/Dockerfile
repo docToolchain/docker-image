@@ -45,5 +45,4 @@ WORKDIR /project
 
 VOLUME /project
 
-CMD bash
 ENTRYPOINT bash
