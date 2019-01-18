@@ -16,14 +16,17 @@ RUN	echo "add needed tools" && \
     gem install rdoc --no-document && \
     gem install pygments.rb
 
+# Add pandoc
+# https://github.com/advancedtelematic/dockerfiles/blob/master/doctools/Dockerfile
+#RUN apk add --no-cache cmark --repository http://nl.alpinelinux.org/alpine/edge/testing && \
+#    apk add --no-cache --allow-untrusted pandoc --repository https://conoria.gitlab.io/alpine-pandoc/
+
 SHELL ["/bin/bash", "-c"]
 
 RUN echo "Install sdkman" &&\
-    curl -s "https://get.sdkman.io" | bash
-
-RUN echo "$HOME"
-RUN chmod +x $HOME/.sdkman/bin/sdkman-init.sh
-RUN $HOME/.sdkman/bin/sdkman-init.sh
+    curl -s "https://get.sdkman.io" | bash && \
+    chmod +x $HOME/.sdkman/bin/sdkman-init.sh && \
+    $HOME/.sdkman/bin/sdkman-init.sh
 
 
 RUN	echo "Install java, groovy" && \
@@ -32,6 +35,7 @@ RUN	echo "Install java, groovy" && \
 
 RUN     git clone https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
+        git checkout v1.1.0
         git submodule update -i && \
         ./gradlew tasks && \
         ./gradlew && \
