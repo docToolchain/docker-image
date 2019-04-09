@@ -35,7 +35,7 @@ RUN	echo "Install java, groovy" && \
 
 RUN     git clone https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
-        git checkout v1.1.0
+        git checkout v1.1.0 && \
         git submodule update -i && \
         ./gradlew tasks && \
         ./gradlew && \
