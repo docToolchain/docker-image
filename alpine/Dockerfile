@@ -12,6 +12,7 @@ RUN	echo "add needed tools" && \
     python \
     ruby \
     py-pygments \
+    libc6-compat \
     ttf-dejavu && \
     gem install rdoc --no-document && \
     gem install pygments.rb
