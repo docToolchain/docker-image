@@ -34,7 +34,7 @@ RUN	echo "Install java, groovy" && \
     source $HOME/.sdkman/bin/sdkman-init.sh
 #    sdk install groovy 2.5.5
 
-RUN     git clone https://github.com/docToolchain/docToolchain.git && \
+RUN     git clone --depth 1 https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
         git checkout v1.2.0 && \
         git submodule update -i && \
