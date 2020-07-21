@@ -38,6 +38,8 @@ RUN     git clone https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
         git checkout v1.2.0 && \
         git submodule update -i && \
+        # remove .git folders
+        rm -rf `find -type d -name .git` && \
         ./gradlew tasks && \
         ./gradlew && \
         PATH="/docToolchain/bin:${PATH}"
