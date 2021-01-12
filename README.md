@@ -29,3 +29,8 @@ on windows, the following batch script does the same:
 ```
 docker run --rm --entrypoint /bin/bash -it -v %cd%:/project rdmueller/doctoolchain:rc-1.2.0 -c "doctoolchain . %1 %2 %3 %4 %5 %6 %7 %8 %9 -PinputPath=src/main/asciidoc -PmainConfigFile=config/docToolchain.groovy && exit"
 ```
+
+## Development / Deployment
+
+New builds of the image are automatically triggered when (this repository is changed | a new Tag is created).
+The resulting docker image is then available through the docker hub.
