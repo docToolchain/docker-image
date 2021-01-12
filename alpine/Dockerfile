@@ -1,4 +1,4 @@
-FROM openjdk:8u191-jdk-alpine
+FROM openjdk:13-jdk-alpine
 
 ENV SDKMAN_DIR=/root/.sdkman
 
@@ -34,9 +34,8 @@ RUN	echo "Install java, groovy" && \
     source $HOME/.sdkman/bin/sdkman-init.sh
 #    sdk install groovy 2.5.5
 
-RUN     git clone --depth 1 https://github.com/docToolchain/docToolchain.git && \
+RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
-        git checkout ng && \
         git submodule update -i && \
         # remove .git folders
         rm -rf `find -type d -name .git` && \
