@@ -36,7 +36,7 @@ RUN	echo "Install java, groovy" && \
 
 RUN     git clone --depth 1 https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
-        git checkout v1.3.0 && \
+        git checkout v1.3.1 && \
         git submodule update -i && \
         # remove .git folders
         rm -rf `find -type d -name .git` && \
