@@ -1,4 +1,4 @@
-FROM openjdk:8u191-jdk-alpine
+FROM openjdk:14-jdk-alpine
 
 ENV SDKMAN_DIR=/root/.sdkman
 
