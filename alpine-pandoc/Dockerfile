@@ -1,4 +1,4 @@
-FROM rdmueller/doctoolchain
+FROM rdmueller/doctoolchain:v1.3.1
 
 # Reinstall any system packages required for runtime of pandoc.
 RUN apk --no-cache add \
