@@ -10,7 +10,7 @@ RUN apk --no-cache add \
 COPY --from=pandoc/core:2.9 \
     /usr/bin/pandoc \
     /usr/bin/pandoc-citeproc \
-    /usr/bin
+    /usr/bin/
 
 SHELL ["/bin/bash", "-c"]
 
