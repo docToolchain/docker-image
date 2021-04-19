@@ -41,6 +41,7 @@ RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolc
         # remove .git folders
         rm -rf `find -type d -name .git` && \
         ./gradlew tasks && \
+        ./gradlew dependencies && \
         ./gradlew && \
         PATH="/docToolchain/bin:${PATH}"
 
