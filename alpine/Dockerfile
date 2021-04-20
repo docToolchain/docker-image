@@ -5,7 +5,7 @@ ENV SDKMAN_DIR=/root/.sdkman
 # see https://github.com/docker-library/openjdk/issues/73
 ENV LC_CTYPE en_US.UTF-8
 
-RUN useradd -ms /bin/bash doctoolchain
+RUN addgroup -S dtcgroup && adduser -S dtcuser -G dtcgroup
 
 
 RUN	echo "add needed tools" && \
@@ -27,8 +27,8 @@ RUN	echo "add needed tools" && \
 
 SHELL ["/bin/bash", "-c"]
 
-USER doctoolchain
-WORKDIR /home/doctoolchain
+USER dtcsuser
+WORKDIR /home/dtcuser
 
 RUN echo "Install sdkman" &&\
     curl -s "https://get.sdkman.io" | bash && \
@@ -49,9 +49,9 @@ RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolc
         rm -rf `find -type d -name .git` && \
         ./gradlew tasks && \
         ./gradlew dependencies && \
-        PATH="/home/doctoolchain/docToolchain/bin:${PATH}"
+        PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
-ENV PATH="/home/doctoolchain/docToolchain/bin:${PATH}"
+ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
 RUN mkdir /project
 
