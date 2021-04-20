@@ -5,6 +5,9 @@ ENV SDKMAN_DIR=/root/.sdkman
 # see https://github.com/docker-library/openjdk/issues/73
 ENV LC_CTYPE en_US.UTF-8
 
+RUN useradd -ms /bin/bash doctoolchain
+
+
 RUN	echo "add needed tools" && \
     apk add --no-cache curl wget zip unzip git bash \
     git \
@@ -23,6 +26,9 @@ RUN	echo "add needed tools" && \
 #    apk add --no-cache --allow-untrusted pandoc --repository https://conoria.gitlab.io/alpine-pandoc/
 
 SHELL ["/bin/bash", "-c"]
+
+USER doctoolchain
+WORKDIR /home/doctoolchain
 
 RUN echo "Install sdkman" &&\
     curl -s "https://get.sdkman.io" | bash && \
@@ -43,9 +49,9 @@ RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolc
         rm -rf `find -type d -name .git` && \
         ./gradlew tasks && \
         ./gradlew dependencies && \
-        PATH="/docToolchain/bin:${PATH}"
+        PATH="/home/doctoolchain/docToolchain/bin:${PATH}"
 
-ENV PATH="/docToolchain/bin:${PATH}"
+ENV PATH="/home/doctoolchain/docToolchain/bin:${PATH}"
 
 RUN mkdir /project
 
