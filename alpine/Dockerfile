@@ -27,7 +27,7 @@ RUN	echo "add needed tools" && \
 
 SHELL ["/bin/bash", "-c"]
 
-USER dtcsuser
+USER dtcuser
 WORKDIR /home/dtcuser
 
 RUN echo "Install sdkman" &&\
