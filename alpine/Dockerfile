@@ -1,7 +1,5 @@
 FROM openjdk:13-jdk-alpine
 
-ENV SDKMAN_DIR=/root/.sdkman
-
 # see https://github.com/docker-library/openjdk/issues/73
 ENV LC_CTYPE en_US.UTF-8
 
@@ -40,6 +38,8 @@ RUN	echo "Install java, groovy" && \
     source $HOME/.sdkman/bin/sdkman-init.sh
 #    sdk install groovy 2.5.5
 
+ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
+
 RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \
@@ -47,13 +47,17 @@ RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolc
         git submodule update -i && \
         # remove .git folders
         rm -rf `find -type d -name .git` && \
+        umask g+w && \
         ./gradlew tasks && \
         ./gradlew dependencies && \
+        chmod g+s $GRADLE_USER_HOME && \
+        chmod -R 770 $GRADLE_USER_HOME && \
+        rm -r $GRADLE_USER_HOME/daemon && \
         PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
 ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
-RUN mkdir /project
+USER dtcuser
 
 WORKDIR /project
 
