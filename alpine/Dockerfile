@@ -9,7 +9,6 @@ RUN addgroup -S dtcgroup && adduser -S dtcuser -G dtcgroup
 RUN	echo "add needed tools" && \
     apk add --no-cache curl wget zip unzip git bash \
     git \
-    su-exec \
     graphviz \
     python \
     ruby \
@@ -51,8 +50,8 @@ RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolc
         umask g+w && \
         ./gradlew tasks && \
         ./gradlew dependencies && \
-        chmod g+s $GRADLE_USER_HOME && \
-        chmod -R 770 $GRADLE_USER_HOME && \
+        chmod -R o=u $GRADLE_USER_HOME && \
+        chmod -R g=u $GRADLE_USER_HOME && \
         rm -r $GRADLE_USER_HOME/daemon && \
         PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
