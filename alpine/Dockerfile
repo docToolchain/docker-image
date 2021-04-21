@@ -9,6 +9,7 @@ RUN addgroup -S dtcgroup && adduser -S dtcuser -G dtcgroup
 RUN	echo "add needed tools" && \
     apk add --no-cache curl wget zip unzip git bash \
     git \
+    su-exec \
     graphviz \
     python \
     ruby \
