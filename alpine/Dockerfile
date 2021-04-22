@@ -27,6 +27,7 @@ SHELL ["/bin/bash", "-c"]
 
 USER dtcuser
 WORKDIR /home/dtcuser
+ENV HOME=/home/dtcuser
 
 RUN echo "Install sdkman" &&\
     curl -s "https://get.sdkman.io" | bash && \
@@ -53,7 +54,7 @@ RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolc
         chmod -R o=u $GRADLE_USER_HOME && \
         chmod -R g=u $GRADLE_USER_HOME && \
         rm -r $GRADLE_USER_HOME/daemon && \
-        PATH="/home/dtcuser/docToolchain/bin:${PATH}"
+        chmod -R o=u $HOME
 
 ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
