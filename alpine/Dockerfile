@@ -44,7 +44,7 @@ ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \
-        git checkout v2.0.0-rc14 && \
+        git checkout v2.0.0-rc15 && \
         git submodule update -i && \
         # remove .git folders
         rm -rf `find -type d -name .git` && \
