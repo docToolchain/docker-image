@@ -21,6 +21,12 @@ You can overrride the docToolchain version to use and some parameters like the l
 With this script, you use docToolchain on your project like this:
 
     ./doctoolchain.sh generateHTML
+    
+Gradle options like memory settings or debug mode can be set the following way: 
+
+    # Use --help instead of --debug to see the other available gradle specific options.
+    export JAVA_TOOL_OPTIONS=-Xmx1g;./doctoolchain.sh -Dorg.gradle.jvmargs=-Xmx2048m --debug generateHTML
+    
 
 ## Windows
 
