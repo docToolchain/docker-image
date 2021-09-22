@@ -41,7 +41,7 @@ RUN	echo "Install java, groovy" && \
 
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 
-RUN     git clone --depth 1 --branch ng https://github.com/docToolchain/docToolchain.git  && \
+RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \
         git checkout v2.0.0-rc16 && \
