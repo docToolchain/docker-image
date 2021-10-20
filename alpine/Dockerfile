@@ -1,4 +1,4 @@
-FROM openjdk:13-jdk-alpine
+FROM openjdk:15-jdk-alpine
 
 # see https://github.com/docker-library/openjdk/issues/73
 ENV LC_CTYPE en_US.UTF-8
@@ -10,7 +10,7 @@ RUN	echo "add needed tools" && \
     apk add --no-cache curl wget zip unzip git bash \
     git \
     graphviz \
-    python \
+    python3 \
     ruby \
     py-pygments \
     libc6-compat \
