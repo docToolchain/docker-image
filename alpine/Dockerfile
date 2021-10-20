@@ -29,16 +29,6 @@ USER dtcuser
 WORKDIR /home/dtcuser
 ENV HOME=/home/dtcuser
 
-RUN echo "Install sdkman" &&\
-    curl -s "https://get.sdkman.io" | bash && \
-    chmod +x $HOME/.sdkman/bin/sdkman-init.sh && \
-    $HOME/.sdkman/bin/sdkman-init.sh
-
-
-RUN	echo "Install java, groovy" && \
-    source $HOME/.sdkman/bin/sdkman-init.sh
-#    sdk install groovy 2.5.5
-
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 
 RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
