@@ -5,6 +5,7 @@ ENV LC_CTYPE en_US.UTF-8
 
 RUN addgroup -S dtcgroup && adduser -S dtcuser -G dtcgroup
 
+RUN apk update && apk add --no-cache build-base
 
 RUN	echo "add needed tools" && \
     apk add --no-cache curl wget zip unzip git bash \
@@ -12,11 +13,13 @@ RUN	echo "add needed tools" && \
     graphviz \
     python \
     ruby \
+    ruby-dev \
     py-pygments \
     libc6-compat \
-    ttf-dejavu && \
-    gem install rdoc --no-document && \
-    gem install pygments.rb
+    ttf-dejavu 
+RUN gem install --no-ri --no-rdoc  rdoc --no-document 
+#RUN gem install --no-ri --no-rdoc pygments.rb
+RUN apk del ruby-dev
 
 # Add pandoc
 # https://github.com/advancedtelematic/dockerfiles/blob/master/doctools/Dockerfile
