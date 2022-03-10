@@ -36,14 +36,12 @@ ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \
-        git checkout v2.0.4 && \
+        git checkout v2.0.5 && \
         git submodule update -i && \
         # remove .git folders
         rm -rf `find -type d -name .git` && \
         umask g+w && \
-        ./gradlew tasks && \
-        ./gradlew dependencies && \
-        ./gradlew generatePDF && \
+        ./gradlew downloadDependencies && \
         chmod -R o=u $GRADLE_USER_HOME && \
         chmod -R g=u $GRADLE_USER_HOME && \
         rm -r $GRADLE_USER_HOME/daemon && \
