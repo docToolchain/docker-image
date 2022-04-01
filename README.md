@@ -1,7 +1,10 @@
 # docker-image for docToolchain
 
 sources and issue tracker: https://github.com/docToolchain/docker-image
-docker hub: https://hub.docker.com/r/rdmueller/doctoolchain/builds
+docker hub: https://hub.docker.com/r/rdmueller/doctoolchain/tags
+
+version will be updated with each release of: https://github.com/docToolchain/doctoolchain.github.io/blob/master/dtcw#L12
+
 
 ## how to use
 
@@ -10,7 +13,7 @@ create a bash script within the root of your project like this one:
 doctoolchain.sh
 ```bash
 #!/usr/bin/env bash
-docker run --rm -it --entrypoint /bin/bash -v ${PWD}:/project rdmueller/doctoolchain:v2.0.0-rc14c \
+docker run --rm -it --entrypoint /bin/bash -v ${PWD}:/project rdmueller/doctoolchain:v2.0.5 \
 -c "doctoolchain . $1 $2 $3 $4 $5 $6 $7 $8 $9 -PinputPath=src/main/asciidoc -PmainConfigFile=config/docToolchain.groovy && exit"
 ```
 
@@ -27,7 +30,7 @@ With this script, you use docToolchain on your project like this:
 on windows, the following batch script does the same:
 
 ```
-docker run --rm --entrypoint /bin/bash -it -v %cd%:/project rdmueller/doctoolchain:v2.0.0-rc14c -c "doctoolchain . %1 %2 %3 %4 %5 %6 %7 %8 %9 -PinputPath=src/main/asciidoc -PmainConfigFile=config/docToolchain.groovy && exit"
+docker run --rm --entrypoint /bin/bash -it -v %cd%:/project rdmueller/doctoolchain:v2.0.5 -c "doctoolchain . %1 %2 %3 %4 %5 %6 %7 %8 %9 -PinputPath=src/main/asciidoc -PmainConfigFile=config/docToolchain.groovy && exit"
 ```
 
 ## Development / Deployment
