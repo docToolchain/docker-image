@@ -10,6 +10,9 @@ on:
       - 'bugfix/**'
   workflow_dispatch: {}
 
+env:
+  DCT_VERSION: v2.0.5
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -35,4 +38,5 @@ jobs:
         with:
           context: jenkins-ssh-agent
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-ssh-agent:latest
+          # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doctoolchain-jenkins-ssh-agent:${{ env.DCT_VERSION }}

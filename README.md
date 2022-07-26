@@ -5,6 +5,27 @@ docker hub: https://hub.docker.com/r/rdmueller/doctoolchain/tags
 
 version will be updated with each release of: https://github.com/docToolchain/doctoolchain.github.io/blob/master/dtcw#L12
 
+**NOTE**: Most of the following currently works only for `jenkins-ssh-agent`!
+
+## Set respective build environment
+
+Align this with your personal settings/preferences.
+
+```bash
+: ${DOCKERHUB_USERNAME:="${USER}"}
+: ${DCT_VERSION:="v2.0.5"}
+# Export is not necessary as long as these variables are only used for local shell calls
+```
+
+## Build Docker image(s)
+
+```bash
+docker build \
+  -t ${DOCKERHUB_USERNAME}/doctoolchain-jenkins-ssh-agent:${DCT_VERSION} \
+  --build-arg DCT_VERSION=${DCT_VERSION} \
+  jenkins-ssh-agent
+```
+
 
 ## how to use
 
