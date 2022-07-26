@@ -33,10 +33,21 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build Image
+        uses: docker/build-push-action@v3
+        with:
+          context: jenkins-ssh-agent
+          load: true
+          # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doctoolchain-jenkins-ssh-agent:${{ env.DCT_VERSION }}
+      -
+        name: Test Image
+        run: |
+          docker run --rm -v ${PWD}/test:/workspace -w /workspace ${{ secrets.DOCKERHUB_USERNAME }}/doctoolchain-jenkins-ssh-agent:${{ env.DCT_VERSION }} doctoolchain . tasks
+      -
+        name: Push Image
         uses: docker/build-push-action@v3
         with:
           context: jenkins-ssh-agent
           push: true
-          # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/doctoolchain-jenkins-ssh-agent:${{ env.DCT_VERSION }}

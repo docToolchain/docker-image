@@ -27,6 +27,19 @@ docker build \
 ```
 
 
+## Test Docker image(s)
+
+**Note**: This is only a smoke test (more elaborated test cases should be provided in the future).
+
+```bash
+docker run \
+  --rm \
+  -v ${PWD}/test:/workspace \
+  -w /workspace \
+  ${DOCKERHUB_USERNAME}/doctoolchain-jenkins-ssh-agent:${DCT_VERSION} \
+  doctoolchain . tasks
+```
+
 ## how to use
 
 create a bash script within the root of your project like this one:
