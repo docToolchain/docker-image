@@ -71,3 +71,12 @@ docker run --rm --entrypoint /bin/bash -it -v %cd%:/project rdmueller/doctoolcha
 
 New builds of the image are automatically triggered when (this repository is changed | a new Tag is created).
 The resulting docker image is then available through the docker hub.
+
+## Set up Github Actions for Continuous Integration
+
+In order to automatically build and push new images via [Github Actions](https://docs.github.com/en/actions) the following steps are necessary.
+
+* [Activate Github Actions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#managing-github-actions-permissions-for-your-repository) for your repository
+* Create [secrets for your repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
+  * `DOCKERHUB_USERNAME`: Your Docker Hub username (or of your organization), e.g., `doctoolchain`.
+  * `DOCKERHUB_TOKEN`: **Caution**: Do not store your password here but [generate a suitable token](https://hub.docker.com/settings/security?generateToken=true) (Read/Write should be sufficient).
