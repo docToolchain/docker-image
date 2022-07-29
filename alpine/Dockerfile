@@ -25,6 +25,18 @@ RUN gem install pygments.rb
 #RUN apk add --no-cache cmark --repository http://nl.alpinelinux.org/alpine/edge/testing && \
 #    apk add --no-cache --allow-untrusted pandoc --repository https://conoria.gitlab.io/alpine-pandoc/
 
+# Add mermaid
+ENV CHROME_BIN="/usr/bin/chromium-browser" \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
+RUN apk add --no-cache npm && \
+    # Dependencies for running puppeteer
+    apk add --no-cache chromium  terminus-font ttf-dejavu ttf-freefont ttf-inconsolata ttf-linux-libertine && \
+    fc-cache -f && \
+    npm install @mermaid-js/mermaid-cli
+ADD puppeteer-config.json /puppeteer-config.json
+ADD mmdc /usr/local/bin/mmdc
+RUN chmod +x /usr/local/bin/mmdc
+
 SHELL ["/bin/bash", "-c"]
 
 USER dtcuser
