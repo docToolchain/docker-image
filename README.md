@@ -5,6 +5,40 @@ docker hub: https://hub.docker.com/r/rdmueller/doctoolchain/tags
 
 version will be updated with each release of: https://github.com/docToolchain/doctoolchain.github.io/blob/master/dtcw#L12
 
+**NOTE**: Most of the following currently works only for `jenkins-ssh-agent`!
+
+## Set respective build environment
+
+Align this with your personal settings/preferences.
+
+```bash
+: ${DOCKERHUB_USERNAME:="${USER}"}
+: ${DCT_VERSION:="v2.0.5"}
+# Export is not necessary as long as these variables are only used for local shell calls
+```
+
+## Build Docker image(s)
+
+```bash
+docker build \
+  -t ${DOCKERHUB_USERNAME}/doctoolchain-jenkins-ssh-agent:${DCT_VERSION} \
+  --build-arg DCT_VERSION=${DCT_VERSION} \
+  jenkins-ssh-agent
+```
+
+
+## Test Docker image(s)
+
+**Note**: This is only a smoke test (more elaborated test cases should be provided in the future).
+
+```bash
+docker run \
+  --rm \
+  -v ${PWD}/test:/workspace \
+  -w /workspace \
+  ${DOCKERHUB_USERNAME}/doctoolchain-jenkins-ssh-agent:${DCT_VERSION} \
+  doctoolchain . tasks
+```
 
 ## how to use
 
@@ -37,3 +71,12 @@ docker run --rm --entrypoint /bin/bash -it -v %cd%:/project rdmueller/doctoolcha
 
 New builds of the image are automatically triggered when (this repository is changed | a new Tag is created).
 The resulting docker image is then available through the docker hub.
+
+## Set up Github Actions for Continuous Integration
+
+In order to automatically build and push new images via [Github Actions](https://docs.github.com/en/actions) the following steps are necessary.
+
+* [Activate Github Actions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#managing-github-actions-permissions-for-your-repository) for your repository
+* Create [secrets for your repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
+  * `DOCKERHUB_USERNAME`: Your Docker Hub username (or of your organization), e.g., `doctoolchain`.
+  * `DOCKERHUB_TOKEN`: **Caution**: Do not store your password here but [generate a suitable token](https://hub.docker.com/settings/security?generateToken=true) (Read/Write should be sufficient).
