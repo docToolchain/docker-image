@@ -49,7 +49,7 @@ jobs:
             -v ${PWD}/test:/workspace \
             -w /workspace \
             doctoolchain/doctoolchain-jenkins-ssh-agent:${{ env.DTC_VERSION }} \
-            "set -eu; test -w /etc/environment; doctoolchain . tasks"
+            bash -c "set -eu; test -w /etc/environment && ls -l /etc/environment; doctoolchain . tasks"
       -
         name: Push Image
         uses: docker/build-push-action@v3
