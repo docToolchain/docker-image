@@ -32,7 +32,8 @@ ENV HOME=/home/jenkins
 ENV GRADLE_USER_HOME=/home/jenkins/.gradle
 
 ARG DTC_VERSION
-RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
+RUN     cd ${HOME} && \
+        git clone --branch ng https://github.com/docToolchain/docToolchain.git && \
         cd docToolchain && \
         git fetch --tags && \
         git checkout ${DTC_VERSION} && \
@@ -43,7 +44,8 @@ RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  
         ./gradlew tasks && \
         ./gradlew dependencies && \
         ./gradlew generatePDF && \
-        rm -r $GRADLE_USER_HOME/daemon
+        rm -r $GRADLE_USER_HOME/daemon && \
+        chmod -R a+w ${GRADLE_USER_HOME}
 
 # This is for interactive usage
 ENV PATH="/home/jenkins/docToolchain/bin:${PATH}"
@@ -51,3 +53,5 @@ ENV PATH="/home/jenkins/docToolchain/bin:${PATH}"
 RUN echo "append_path \"/home/jenkins/docToolchain/bin\"" >> /etc/profile
 # This is for SSH Login
 RUN echo "PATH=${PATH}" > /home/jenkins/.ssh/environment
+# While running the /usr/local/bin/setup-sshd script extends this file - make sure it exists and can be written by enyone
+RUN echo "PATH=${PATH}" >> /etc/environment && chmod 666 /etc/environment
