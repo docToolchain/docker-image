@@ -12,8 +12,8 @@ version will be updated with each release of: https://github.com/docToolchain/do
 Align this with your personal settings/preferences.
 
 ```bash
-: ${DOCKERHUB_USERNAME:="${USER}"}
-: ${DCT_VERSION:="v2.0.5"}
+: ${DOCKERHUB_USERNAME:="doctoolchain"}
+: ${DTC_VERSION:="v2.0.5"}
 # Export is not necessary as long as these variables are only used for local shell calls
 ```
 
@@ -21,8 +21,8 @@ Align this with your personal settings/preferences.
 
 ```bash
 docker build \
-  -t ${DOCKERHUB_USERNAME}/doctoolchain-jenkins-ssh-agent:${DCT_VERSION} \
-  --build-arg DCT_VERSION=${DCT_VERSION} \
+  -t ${DOCKERHUB_USERNAME}/doctoolchain-jenkins-ssh-agent:${DTC_VERSION} \
+  --build-arg DTC_VERSION=${DTC_VERSION} \
   jenkins-ssh-agent
 ```
 
