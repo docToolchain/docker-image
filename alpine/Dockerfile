@@ -33,10 +33,11 @@ ENV HOME=/home/dtcuser
 
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 
+ARG DTC_VERSION
 RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \
-        git checkout v2.0.5 && \
+        git checkout ${DTC_VERSION} && \
         git submodule update -i && \
         # remove .git folders
         rm -rf `find -type d -name .git` && \
