@@ -1,0 +1,16 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+container: 'doctoolchain/doctoolchain-azure-devops-pipeline:latest'
+
+steps:
+  - script: |
+      export DTC_HEADLESS=1
+      export DTC_OUTPUTPATH=$(Build.ArtifactStagingDirectory)/output
+      cd doc/runbook
+      doctoolchain . generatePDF -PmainConfigFile='docToolchainConfig.groovy' --warning-mode=none --no-daemon
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/output'
+      ArtifactName: 'output'
+      publishLocation: 'Container'
