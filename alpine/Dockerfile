@@ -5,7 +5,7 @@ ENV LC_CTYPE en_US.UTF-8
 
 RUN addgroup -S dtcgroup && adduser -S dtcuser -G dtcgroup
 
-RUN apk update && apk add --no-cache build-base
+RUN apk update && apk upgrade && apk add --no-cache build-base
 
 RUN	echo "add needed tools" && \
     apk add --no-cache curl wget zip unzip git bash --virtual build-dependencies build-base\
