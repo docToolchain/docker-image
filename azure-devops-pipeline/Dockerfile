@@ -52,9 +52,9 @@ RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  
         chmod -R o=u $HOME
 
 # add reveal.js
-RUN     cd /home/dtcuser/docToolchain/resources/. && \ 
-        ./clone.sh && \
-        cd - 
+#RUN     cd /home/dtcuser/docToolchain/resources/. && \ 
+#        ./clone.sh && \
+#        cd - 
 
 ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 ENV DTC_HEADLESS=1
