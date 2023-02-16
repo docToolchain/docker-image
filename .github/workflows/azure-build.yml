@@ -11,7 +11,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  DTC_VERSION: v2.1.0
+  DTC_VERSION: v2.2.0
 
 jobs:
   docker:
