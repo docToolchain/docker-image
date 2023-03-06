@@ -1,7 +1,7 @@
 # docker-image for docToolchain
 
 sources and issue tracker: https://github.com/docToolchain/docker-image
-docker hub: https://hub.docker.com/r/rdmueller/doctoolchain/tags
+docker hub: https://hub.docker.com/r/doctoolchain/doctoolchain/tags
 
 version will be updated with each release of: https://github.com/docToolchain/doctoolchain.github.io/blob/master/dtcw#L12
 
