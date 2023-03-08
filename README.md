@@ -69,7 +69,7 @@ docker run --rm --entrypoint /bin/bash -it -v %cd%:/project doctoolchain/doctool
 
 ## Available doctoolchain-images
 
-The following list shows all _official_ doctoolchain-docker-images and there usecase.
+The following list shows all _official_ doctoolchain-docker-images and the typical there usecases.
 
 * https://hub.docker.com/r/doctoolchain/doctoolchain - Default doctoolchain-docker-image. 
   Contains minimal useable doctoolchain installation.
