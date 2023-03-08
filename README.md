@@ -67,6 +67,19 @@ on windows, the following batch script does the same:
 docker run --rm --entrypoint /bin/bash -it -v %cd%:/project doctoolchain/doctoolchain:v2.2.1 -c "doctoolchain . %1 %2 %3 %4 %5 %6 %7 %8 %9 -PinputPath=src/main/asciidoc -PmainConfigFile=config/docToolchain.groovy && exit"
 ```
 
+## Available doctoolchain-images
+
+The following list shows all _official_ doctoolchain-docker-images and the typical usecases.
+
+* https://hub.docker.com/r/doctoolchain/doctoolchain - Default doctoolchain-docker-image. 
+  Contains minimal useable doctoolchain installation.
+  Should be good enough for most usecases.
+* https://hub.docker.com/r/doctoolchain/doctoolchain-azure-devops-pipeline - 
+* https://hub.docker.com/r/doctoolchain/doctoolchain-jenkins-ssh-agent - 
+* https://hub.docker.com/r/doctoolchain/doctoolchain-with-pandoc - Contains a doctoolchain installation and a pandoc installation.
+  Use this image if the doctoolchain-tasks you need, require pandoc. e.g. http://doctoolchain.org/docToolchain/v2.0.x/015_tasks/03_task_convertToDocx.html
+
+
 ## Development / Deployment
 
 New builds of the image are automatically triggered when (this repository is changed | a new Tag is created).
