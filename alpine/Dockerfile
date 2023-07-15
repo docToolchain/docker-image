@@ -48,10 +48,6 @@ RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  
         rm -r $GRADLE_USER_HOME/daemon && \
         chmod -R o=u $HOME
 
-# add reveal.js
-RUN     cd /home/dtcuser/docToolchain/resources/. && \
-        ./clone.sh && \
-        cd -
 
 ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
