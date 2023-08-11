@@ -1,4 +1,7 @@
+
 # docker-image for docToolchain
+
+Note: these docs might be outdated. The docToolchain docker image is mainly used together with the docToolchain-wrapper `dtcw` as explained in this tutotial: https://doctoolchain.org/docToolchain/v2.0.x/020_tutorial/010_Install.html
 
 sources and issue tracker: https://github.com/docToolchain/docker-image
 docker hub: https://hub.docker.com/r/doctoolchain/doctoolchain/tags
