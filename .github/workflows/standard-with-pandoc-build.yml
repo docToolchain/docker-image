@@ -36,7 +36,7 @@ jobs:
         name: Build Image
         uses: docker/build-push-action@v3
         with:
-          context: alpine
+          context: alpine-with-pandoc
           build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           load: true
           # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
@@ -54,6 +54,6 @@ jobs:
         name: Push Image
         uses: docker/build-push-action@v3
         with:
-          context: alpine
+          context: alpine-with-pandoc
           push: true
           tags: doctoolchain/doctoolchain-with-pandoc:${{ env.DTC_VERSION }}
