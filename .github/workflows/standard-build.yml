@@ -44,13 +44,13 @@ jobs:
         with:
           context: alpine
           build-args: DTC_VERSION=${{ env.DTC_VERSION }}
-          tags: myimage:latest
+          tags: doctoolchain/doctoolchain:${{ env.DTC_VERSION }}
           outputs: type=docker,dest=/tmp/build.tar
       -
         name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: myimage
+          name: image
           path: /tmp/build.tar
 
   test:
@@ -61,8 +61,8 @@ jobs:
         name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: myimage
-          path: /tmp
+          name: image
+          path: /tmp/build.tar
       - 
         name: Load image
         run: docker load --input /tmp/build.tar
@@ -86,8 +86,8 @@ jobs:
         name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: myimage
-          path: /tmp
+          name: image
+          path: /tmp/build.tar
       - 
         name: Load image
         run: docker load --input /tmp/build.tar
