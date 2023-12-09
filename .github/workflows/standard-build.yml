@@ -21,11 +21,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "build"
 
   test:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "test"
 
 
   deploy:
@@ -33,3 +41,8 @@ jobs:
     if: github.ref == 'refs/heads/master'
     needs: [build, test]
     steps:
+      steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "deploy"
