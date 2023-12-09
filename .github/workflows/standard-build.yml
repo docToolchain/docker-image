@@ -23,8 +23,7 @@ jobs:
     steps:
       - name: Any Name Bash Test Step
         shell: bash
-        run: |
-          echo "build"
+        run: echo "build"
 
   test:
     runs-on: ubuntu-latest
@@ -32,8 +31,7 @@ jobs:
     steps:
       - name: Any Name Bash Test Step
         shell: bash
-        run: |
-          echo "test"
+        run: echo "build"
 
 
   deploy:
@@ -41,8 +39,6 @@ jobs:
     if: github.ref == 'refs/heads/master'
     needs: [build, test]
     steps:
-      steps:
       - name: Any Name Bash Test Step
         shell: bash
-        run: |
-          echo "deploy"
+        run: echo "build"
