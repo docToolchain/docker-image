@@ -62,7 +62,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: image
-          path: /tmp/upload/build.tar
+          path: /tmp/upload/
       - 
         name: ls tar
         run: ls -a /tmp/upload/build.tar
