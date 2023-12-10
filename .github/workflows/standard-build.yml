@@ -44,8 +44,8 @@ jobs:
           tags: doctoolchain/doctoolchain:${{ env.DTC_VERSION }}
           outputs: type=docker,dest=/tmp/upload/build.tar
       - 
-        name: Create upload folder
-        run: ls /tmp/upload/build.tar
+        name: ls tar
+        run: ls -a /tmp/upload/build.tar
       -
         name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -63,6 +63,9 @@ jobs:
         with:
           name: image
           path: /tmp/upload/build.tar
+      - 
+        name: ls tar
+        run: ls -a /tmp/upload/build.tar
       - 
         name: Load image
         run: docker load --input /tmp/upload/build.tar
