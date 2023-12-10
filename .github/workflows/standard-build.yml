@@ -24,12 +24,6 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Login to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
         name: Build Image
         uses: docker/build-push-action@v3
         with:
@@ -91,6 +85,12 @@ jobs:
       - 
         name: Load image
         run: docker load --input /tmp/build.tar
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Push Image
         uses: docker/build-push-action@v3
