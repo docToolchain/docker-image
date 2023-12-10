@@ -33,6 +33,9 @@ jobs:
           # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
           tags: doctoolchain/doctoolchain:${{ env.DTC_VERSION }}
       - 
+        name: Create upload folder
+        run: mkdir /tmp/upload
+      - 
         name: Build and export
         uses: docker/build-push-action@v5
         with:
@@ -40,9 +43,6 @@ jobs:
           build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           tags: doctoolchain/doctoolchain:${{ env.DTC_VERSION }}
           outputs: type=docker,dest=/tmp/upload/build.tar
-      - 
-        name: Create upload folder
-        run: mkdir /tmp/upload
       -
         name: Upload artifact
         uses: actions/upload-artifact@v3
