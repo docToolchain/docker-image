@@ -40,6 +40,9 @@ jobs:
           build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           tags: doctoolchain/doctoolchain:${{ env.DTC_VERSION }}
           outputs: type=docker,dest=/tmp/upload/build.tar
+      - 
+        name: Create upload folder
+        run: mkdir /tmp/upload
       -
         name: Upload artifact
         uses: actions/upload-artifact@v3
