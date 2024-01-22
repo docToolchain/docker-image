@@ -34,8 +34,8 @@ ENV HOME=/home/dtcuser
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 
 ARG DTC_VERSION
-RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
-        cd docToolchain && \
+RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git .doctoolchain && \
+        cd .docToolchain && \
         git fetch --tags && \
         git checkout ${DTC_VERSION} && \
         git submodule update -i && \
@@ -49,7 +49,7 @@ RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  
         chmod -R o=u $HOME
 
 
-ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
+ENV PATH="/home/dtcuser/.docToolchain/bin:${PATH}"
 
 USER dtcuser
 
