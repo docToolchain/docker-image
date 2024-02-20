@@ -12,6 +12,7 @@ on:
 
 env:
   DTC_VERSION: v3.3
+  PANDOC_VERSION: 3.1.12.1
 
 jobs:
   docker:
@@ -37,7 +38,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: alpine-with-pandoc
-          build-args: DTC_VERSION=${{ env.DTC_VERSION }}
+          build-args: |
+            DTC_VERSION=${{ env.DTC_VERSION }}
+            PANDOC_VERSION=${{ env.PANDOC_VERSION }}
           load: true
           # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
           tags: doctoolchain/doctoolchain-with-pandoc:${{ env.DTC_VERSION }}
