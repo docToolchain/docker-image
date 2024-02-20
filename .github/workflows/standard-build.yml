@@ -1,6 +1,8 @@
 name: Build and push 'standard image' to Docker
 
 on:
+  schedule:
+    - cron: '0 0 * * *'
   push:
     branches:
       - 'master'
