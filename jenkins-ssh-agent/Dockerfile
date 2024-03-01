@@ -32,9 +32,9 @@ ENV HOME=/home/jenkins
 ENV GRADLE_USER_HOME=/home/jenkins/.gradle
 
 ARG DTC_VERSION
-RUN mkdir docToolchain \
-    && curl -LO https://github.com/docToolchain/docToolchain/releases/download/${DTC_VERSION}/docToolchain-${DTC_VERSION#?}.zip \
-    && unzip docToolchain-${DTC_VERSION#?}.zip -d docToolchain \
+RUN curl -LO https://github.com/docToolchain/docToolchain/releases/download/${DTC_VERSION}/docToolchain-${DTC_VERSION#?}.zip \
+    && unzip docToolchain-${DTC_VERSION#?}.zip \
+    && mv docToolchain-${DTC_VERSION#?} docToolchain \
     && rm docToolchain-${DTC_VERSION#?}.zip \
     && cd docToolchain \
     # This is a workaround to suppress the initialization phase of docToolchain.  \
