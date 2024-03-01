@@ -55,5 +55,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: jenkins-ssh-agent
+          build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           push: true
           tags: doctoolchain/doctoolchain-jenkins-ssh-agent:${{ env.DTC_VERSION }}
