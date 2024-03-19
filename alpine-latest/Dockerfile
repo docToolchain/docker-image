@@ -34,7 +34,7 @@ ENV HOME=/home/dtcuser
 ENV GRADLE_USER_HOME=/home/dtcuser/.doctoolchain/.gradle
 
 ARG DTC_VERSION
-RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
+RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git   && \
         cd docToolchain && \
         git fetch --tags && \
         git submodule update -i && \
@@ -46,11 +46,6 @@ RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  
         chmod -R g=u $GRADLE_USER_HOME && \
         rm -r $GRADLE_USER_HOME/daemon && \
         chmod -R o=u $HOME
-
-# add reveal.js
-RUN     cd /home/dtcuser/docToolchain/resources/. && \
-        ./clone.sh && \
-        cd -
 
 # trying to get the last dependencies
 
