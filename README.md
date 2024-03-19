@@ -103,13 +103,13 @@ Build image locally:
 
 ```
 cd alpine-latest
-docker build --progress=plain  -t dtc-local:version .
+docker build --progress=plain --build-arg DTC_VERSION=v3.3.1  -t dtc-local:v3.3.1 .
 ```
 
 run it:
 
 ```
-docker run -it dtc-local:version
+docker run -it dtc-local:v3.3.1
 ```
 
 now enter the following and see if it works:
