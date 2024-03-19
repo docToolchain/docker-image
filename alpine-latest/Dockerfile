@@ -31,27 +31,29 @@ USER dtcuser
 WORKDIR /home/dtcuser
 ENV HOME=/home/dtcuser
 
-ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
+ENV GRADLE_USER_HOME=/home/dtcuser/.doctoolchain/.gradle
 
 ARG DTC_VERSION
 RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \
-        git checkout ${DTC_VERSION} && \
         git submodule update -i && \
         # remove .git folders
         rm -rf `find -type d -name .git` && \
         umask g+w && \
-        ./gradlew downloadDependencies && \
+        ./gradlew downloadDependencies --info && \
         chmod -R o=u $GRADLE_USER_HOME && \
         chmod -R g=u $GRADLE_USER_HOME && \
         rm -r $GRADLE_USER_HOME/daemon && \
         chmod -R o=u $HOME
 
-# add reveal.js
-RUN     cd /home/dtcuser/docToolchain/resources/. && \
-        ./clone.sh && \
-        cd -
+# trying to get the last dependencies
+
+RUN      curl -Lo dtcw https://doctoolchain.org/dtcw && \
+         chmod +x dtcw
+
+RUN      ./dtcw install doctoolchain
+RUN      echo y | ./dtcw local tasks
 
 ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
