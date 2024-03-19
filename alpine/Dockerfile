@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 # see https://github.com/docker-library/openjdk/issues/73
 ENV LC_CTYPE en_US.UTF-8
@@ -55,7 +55,6 @@ RUN      export DTC_VERSION=${DTC_VERSION#?} && \
          chmod +x dtcw && \
          ./dtcw install doctoolchain && \
          echo y | ./dtcw local tasks
-
 ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
 USER dtcuser

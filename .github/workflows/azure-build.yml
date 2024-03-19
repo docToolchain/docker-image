@@ -11,7 +11,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  DTC_VERSION: v3.2.2
+  DTC_VERSION: v3.3.1
 
 jobs:
   docker:
@@ -55,5 +55,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: azure-devops-pipeline
+          build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           push: true
           tags: doctoolchain/doctoolchain-azure-devops-pipeline:${{ env.DTC_VERSION }}
