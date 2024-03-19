@@ -50,7 +50,7 @@ RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  
 # add reveal.js
 RUN     cd /home/dtcuser/docToolchain/resources/. && \
         ./clone.sh && \
-        cd - \
+        cd -
 
 # trying to get the last dependencies
 
