@@ -96,3 +96,26 @@ In order to automatically build and push new images via [Github Actions](https:/
 * Create [secrets for your repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
   * `DOCKERHUB_USERNAME`: Your Docker Hub username (or of your organization), e.g., `doctoolchain`.
   * `DOCKERHUB_TOKEN`: **Caution**: Do not store your password here but [generate a suitable token](https://hub.docker.com/settings/security?generateToken=true) (Read/Write should be sufficient).
+
+## Test if image can be used offline
+
+Build image locally:
+
+```
+cd alpine-latest
+docker build --progress=plain --build-arg DTC_VERSION=v3.3.1  -t dtc-local:v3.3.1 .
+```
+
+run it:
+
+```
+docker run -it dtc-local:v3.3.1
+```
+
+now enter the following and see if it works:
+
+```
+cd
+./dtcw generateSite --info
+```
+

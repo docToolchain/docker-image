@@ -31,24 +31,30 @@ USER dtcuser
 WORKDIR /home/dtcuser
 ENV HOME=/home/dtcuser
 
-ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
+ENV GRADLE_USER_HOME=/home/dtcuser/.doctoolchain/.gradle
 
 ARG DTC_VERSION
-RUN curl -LO https://github.com/docToolchain/docToolchain/releases/download/${DTC_VERSION}/docToolchain-${DTC_VERSION#?}.zip \
-    && unzip docToolchain-${DTC_VERSION#?}.zip \
-    && mv docToolchain-${DTC_VERSION#?} docToolchain \
-    && rm docToolchain-${DTC_VERSION#?}.zip \
-    && cd docToolchain \
-    # This is a workaround to suppress the initialization phase of docToolchain.  \
-    # We should consider a '--no-init' option in the future.
-    && cp template_config/Config.groovy . \
-    && umask g+w  \
-    && ./gradlew downloadDependencies  \
-    && chmod -R o=u $GRADLE_USER_HOME  \
-    && chmod -R g=u $GRADLE_USER_HOME  \
-    && rm -r $GRADLE_USER_HOME/daemon  \
-    && chmod -R o=u $HOME
+RUN     curl -LO https://github.com/docToolchain/docToolchain/releases/download/${DTC_VERSION}/docToolchain-${DTC_VERSION#?}.zip \
+        && unzip docToolchain-${DTC_VERSION#?}.zip \
+        && mv docToolchain-${DTC_VERSION#?} docToolchain \
+        && rm docToolchain-${DTC_VERSION#?}.zip \
+        && cd docToolchain \
+        # This is a workaround to suppress the initialization phase of docToolchain.  \
+        # We should consider a '--no-init' option in the future.
+        && cp template_config/Config.groovy . && \
+        umask g+w && \
+        ./gradlew downloadDependencies && \
+        chmod -R o=u $GRADLE_USER_HOME && \
+        chmod -R g=u $GRADLE_USER_HOME && \
+        rm -r $GRADLE_USER_HOME/daemon && \
+        chmod -R o=u $HOME
 
+# trying to get the last dependencies
+RUN      export DTC_VERSION=${DTC_VERSION#?} && \
+         curl -Lo dtcw https://doctoolchain.org/dtcw  && \
+         chmod +x dtcw && \
+         ./dtcw install doctoolchain && \
+         echo y | ./dtcw local tasks
 ENV PATH="/home/dtcuser/docToolchain/bin:${PATH}"
 
 USER dtcuser
