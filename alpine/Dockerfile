@@ -43,6 +43,7 @@ RUN curl -LO https://github.com/docToolchain/docToolchain/releases/download/${DT
     # We should consider a '--no-init' option in the future.
     && cp template_config/Config.groovy . \
     && umask g+w  \
+    && chmod +x ./gradlew  \
     && ./gradlew downloadDependencies  \
     && chmod -R o=u $GRADLE_USER_HOME  \
     && chmod -R g=u $GRADLE_USER_HOME  \
