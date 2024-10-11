@@ -1,4 +1,4 @@
-FROM doctoolchain/doctoolchain:v2.2.1
+FROM doctoolchain/doctoolchain:v3.4.1
 
 # Azure DevOps requires root access to inject its own users/groups
 USER root
