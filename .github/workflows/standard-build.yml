@@ -1,6 +1,8 @@
 name: Build and push 'standard image' to Docker
 
 on:
+  repository_dispatch:
+    types: [standard-build]
   push:
     branches:
       - 'master'
@@ -11,7 +13,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  DTC_VERSION: v3.4.2
+  DTC_VERSION: ${{ github.event.client_payload.version || 'v3.4.2' }}
 
 jobs:
   docker:
